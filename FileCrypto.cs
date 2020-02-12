@@ -5,6 +5,9 @@ using System.Security.Cryptography;
 
 namespace TesteCryptoFile
 {
+    /// <summary>
+    /// Based on: https://ourcodeworld.com/articles/read/471/how-to-encrypt-and-decrypt-files-using-the-aes-encryption-algorithm-in-c-sharp
+    /// </summary> 
     public class FileCrypto
     {
         //  Call this function to remove the key from memory after use for security
@@ -63,7 +66,8 @@ namespace TesteCryptoFile
 
             //Cipher modes: http://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption
             //AES.Mode = CipherMode.CFB;
-            AES.Mode = CipherMode.ECB;
+            //AES.Mode = CipherMode.ECB;
+            AES.Mode = CipherMode.CBC;
 
             // write salt to the begining of the output file, so in this case can be random every time
             fsCrypt.Write(salt, 0, salt.Length);
@@ -119,7 +123,8 @@ namespace TesteCryptoFile
             AES.IV = key.GetBytes(AES.BlockSize / 8);
             AES.Padding = PaddingMode.PKCS7;
             //AES.Mode = CipherMode.CFB;
-            AES.Mode = CipherMode.ECB;
+            //AES.Mode = CipherMode.ECB;
+            AES.Mode = CipherMode.CBC;
 
             CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateDecryptor(), CryptoStreamMode.Read);
 

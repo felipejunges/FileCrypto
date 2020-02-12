@@ -3,21 +3,18 @@ using System.Runtime.InteropServices;
 
 namespace TesteCryptoFile
 {
-    /// <summary>
-    /// Based on: https://ourcodeworld.com/articles/read/471/how-to-encrypt-and-decrypt-files-using-the-aes-encryption-algorithm-in-c-sharp
-    /// </summary>    
     class Program
     {
-        static string password = "ThePasswordToDecryptAndEncryptTheFile";
-
         static void Main(string[] args)
         {
-            //Cripto();
+            Cripto();
             Decripto();
         }
 
         static void Cripto()
         {
+            var password = "ThePasswordToDecryptAndEncryptTheFile";
+
             // For additional security Pin the password of your files
             GCHandle gch = GCHandle.Alloc(password, GCHandleType.Pinned);
 
@@ -34,6 +31,8 @@ namespace TesteCryptoFile
 
         static void Decripto()
         {
+            var password = "ThePasswordToDecryptAndEncryptTheFile";
+
             // For additional security Pin the password of your files
             GCHandle gch = GCHandle.Alloc(password, GCHandleType.Pinned);
 
